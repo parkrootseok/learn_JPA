@@ -21,25 +21,31 @@ public class JpaMain {
         /* 정석 코드 */
         try {
             // 멤버 생성(비영속)
-            Member member = new Member(150L, "A");
-            Member flushMember = new Member(151L, "FLUSH");
+            //Member member = new Member(150L, "A");
+            //Member flushMember = new Member(151L, "FLUSH");
+
+            // RoleType 추가.
+            //Member member = new Member();
+            //member.setId(1L);
+            //member.setUsername("A");
+            //member.setRoleType(RoleType.USER);
 
             // 영속성 컨텍스트 이점 - 동일성 보장
-            Member A = em.find(Member.class, 150L);
-            Member B = em.find(Member.class, 150L);
-            System.out.println("result = " + (A == B));
+            //Member A = em.find(Member.class, 150L);
+            //Member B = em.find(Member.class, 150L);
+            //System.out.println("result = " + (A == B));
 
             // 영속성 컨텍스트 이점 - 변경 감지(찾은 멤버의 데이터를 변경하는 것만으로 자동으로 DB에 Update Query 전달)
-            Member findMember = em.find(Member.class, 150L);
-            findMember.setName("change");
+            //Member findMember = em.find(Member.class, 150L);
+            //findMember.setUsername("change");
 
             // findMember 객체를 영속 -> 준영속 상태로 변경 (즉, 변경 감지 기능 사용 불가)
-            em.detach(findMember);
+            //em.detach(findMember);
 
             // 멤버 찾기
             //Member findMember = em.find(Member.class, 1L);
 
-            // JPQL (이떄 flsuh 자동 호출)
+            // JPQL (이떄 flush 자동 호출)
             // List<Member> result = em
             //        .createQuery("select m from Member as m", Member.class)
             //        .setFirstResult(1)
@@ -61,11 +67,11 @@ public class JpaMain {
             //em.remove(findMember);
 
             // 이 시점에 즉시 DB에 쿼리 전달
-            em.flush();
+            //em.flush();
 
             // 테이블에 생성한 멤버 추가(비영속 -> 영속)
             // 이 때 바로 DB에 Query 날라가는것이 아니다.
-            em.persist(member);
+            //em.persist(member);
 
             // 준영속
             // em.detach(member);
