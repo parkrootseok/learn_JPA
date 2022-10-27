@@ -26,7 +26,7 @@ public class JpaMain {
             // 회원 저장 - 객체 지향적이지 않다.
             Member member = new Member();
             member.setName("member1");
-            member.setTeamId(team.getId()); // Team 객체를 저장해야 할 것 같은데...
+            member.setTeam(team); // Team 객체를 저장해야 할 것 같은데...
             em.persist(member);
 
             tx.commit();
