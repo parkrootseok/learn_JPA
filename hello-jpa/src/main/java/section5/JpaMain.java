@@ -41,10 +41,16 @@ public class JpaMain {
                 System.out.println("m = " + m.getName());
             }
 
-            /* 양방향 연관 관계를 이용할 때 반드시 주인 객체에서 수정을 해야한다 */
-            /* 주인 객체는 반드시 양방향 관계를 만들기위해 만든 단방햔 관계가아닌 기존의 단방향 관계를 지닌 클래스이다 */
-            // team.getMembers().add(member); 잘못된 데이터 수정 - Team 객체를 관리하는 것은 Member 클래스
-            member.setTeam(team); // 옳은 방법 - 주인인 Member 클래스에서 데이터 수정이 이루어져야 한다.
+            /* 양방향 연관 관계를 이용할 때 반드시 양쪽에 값을 설정 */
+            // team.getMembers().add(member);
+            // member.setTeam(team);
+
+            /* 양방향 연관 관계 편의 메소드를 이용하여 쉽게 하자 */
+            // 메소드가 의미를 지닐 땐 메소드 명을 명확하게 적자!!
+            // 1. 멤버를 기준으로 팀을 추가 2. 팀을 기준으로 멤버를 추가할지 선택
+            // 기준이 되는 클래스에 다음과 같이 연관 관계 메소드를 생성하자!!
+            member.changeTeam(team);
+
 
             tx.commit();
         } catch (Exception e) {

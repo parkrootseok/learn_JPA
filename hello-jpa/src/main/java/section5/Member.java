@@ -43,4 +43,9 @@ public class Member {
     public void setTeam(Team team) {
         this.team = team;
     }
+
+    public void changeTeam(Team team) {
+        this.team = team;
+        team.getMembers().add(this);    // Team 객체에 대해 설정하는 코드. 이를 이용해 양방향 모두를 설정할 수 있다.
+    }
 }
