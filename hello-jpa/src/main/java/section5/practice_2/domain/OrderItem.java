@@ -1,0 +1,66 @@
+package section5.practice_2.domain;
+
+import javax.persistence.*;
+
+@Entity
+public class OrderItem {
+
+    @Id @GeneratedValue @Column(name = "ORDER_ITEM_ID")
+    private Long Id;
+
+    @ManyToOne
+    @JoinColumn(name = "ITEM_ID")
+    private Item item;
+
+    @ManyToOne
+    @JoinColumn(name = "ORDER_ID")
+    private Order order;
+
+    private int orderPrice;
+    private int count;
+
+    public OrderItem() {
+    }
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public int getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(int orderPrice) {
+        this.orderPrice = orderPrice;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+}
+
