@@ -13,7 +13,6 @@ public class JpaMain {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
 
-        // 트랜잭션 시작(반드시 트랜잭션 안에서 작업해야 한다.)
         tx.begin();
 
         /* 정석 코드 */
