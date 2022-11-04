@@ -13,6 +13,11 @@ public class Member {
     @OneToOne @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
+    public void addLocker(Locker locker) {
+        this.locker = locker;
+        locker.setMember(this);
+    }
+
     private String name;
     private String city;
     private String street;
@@ -22,6 +27,14 @@ public class Member {
     private List<Order> orders = new ArrayList<>();
 
     public Member() {}
+
+    public Locker getLocker() {
+        return locker;
+    }
+
+    public void setLocker(Locker locker) {
+        this.locker = locker;
+    }
 
     public long getId() {
         return id;
