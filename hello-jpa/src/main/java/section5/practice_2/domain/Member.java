@@ -13,10 +13,9 @@ public class Member {
     @OneToOne @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
 
-    public void addLocker(Locker locker) {
-        this.locker = locker;
-        locker.setMember(this);
-    }
+    @ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT")
+    private List<Product> products = new ArrayList<>();
 
     private String name;
     private String city;
