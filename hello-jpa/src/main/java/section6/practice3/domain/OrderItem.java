@@ -1,0 +1,23 @@
+package section6.practice3.domain;
+
+import section5.practice_2.domain.Order;
+
+import javax.persistence.*;
+
+@Entity
+public class OrderItem {
+
+    @Id
+    @GeneratedValue
+    @JoinColumn(name = "orderitem_id")
+    private Long id;
+
+    @ManyToOne @JoinColumn(name = "item_id")
+    private Item item;
+
+    @ManyToOne @JoinColumn(name = "order_id")
+    private Order order;
+
+    private int orderPrice;
+    private int count;
+}
