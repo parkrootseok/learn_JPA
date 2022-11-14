@@ -3,6 +3,8 @@ package section7.domain;
 import section7.Config.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 /* 전략 종류
@@ -19,5 +21,9 @@ public class Item extends BaseEntity {
 
     private String name;
     private int price;
+    private int stockQuantity;
+
+    @OneToMany(mappedBy = "item")
+    private List<CategoryItem> categoryItems = new ArrayList<>();
 
 }
