@@ -17,12 +17,15 @@ public class Member {
     private String name;
 
     // Period
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    // private LocalDateTime startDate;
+    // private LocalDateTime endDate;
+    @Embedded
+    private Period workPeriod;
 
     // Address
-    private String city;
-    private String street;
-    private String zipcode;
-
+    // private String city;
+    // private String street;
+    // private String zipcode;
+    @Embedded
+    private Address homeAddress
 }
