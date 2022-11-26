@@ -4,6 +4,9 @@ import section8.domain.Team;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Member {
@@ -16,26 +19,16 @@ public class Member {
     @Column(name = "USERNAME")
     private String name;
 
-    // Period
-    // private LocalDateTime startDate;
-    // private LocalDateTime endDate;
-    @Embedded
-    private Period workPeriod;
+    @ElementCollection
+    @CollectionTable(name = "FAVOLITE_FOOD",
+            joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    private Set<String> favoriteFoods = new HashSet<>();
 
-    // Address
-    // private String city;
-    // private String street;
-    // private String zipcode;
-    @Embedded
-    private Address homeAddress;
+    @ElementCollection
+    @CollectionTable(name = "ADDRESS",
+            joinColumns = @JoinColumn(name = "MEMBER_ID"))
+    private List<Address> addressHistory;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "city", column = @Column(name = "WORK_CITY")),
-            @AttributeOverride(name = "street", column = @Column(name = "WORK_STREET")),
-            @AttributeOverride(name = "zipcode", column = @Column(name = "WORK_ZIPCODE"))
-    })
-    private Address workAddress;
 
 
 }
