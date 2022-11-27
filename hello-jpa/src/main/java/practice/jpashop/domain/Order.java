@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Orders extends BaseEntity {
+public class Order extends BaseEntity {
 
     @Id @GeneratedValue
     @JoinColumn(name = "order_id")

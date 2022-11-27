@@ -12,7 +12,7 @@ public class Delivery extends BaseEntity {
     private Long id;
 
     @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
-    private Orders order;
+    private Order order;
 
     @Embedded
     private  Address address;
