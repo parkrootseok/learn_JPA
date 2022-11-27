@@ -1,4 +1,4 @@
-package section9.domain;
+package practice.jpashop.domain;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

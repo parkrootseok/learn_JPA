@@ -1,10 +1,11 @@
-package section9.domain;
+package practice.jpashop.domain;
 
-import section7.Config.BaseEntity;
+import practice.jpashop.config.BaseEntity;
 import section7.domain.Member;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Orders extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
-    private String orderDate;
+    private Date orderDate;
     private String status;
 
 }

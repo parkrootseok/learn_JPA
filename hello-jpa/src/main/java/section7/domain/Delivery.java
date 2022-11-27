@@ -1,6 +1,6 @@
 package section7.domain;
 
-import section7.Config.BaseEntity;
+import practice.jpashop.config.BaseEntity;
 
 import javax.persistence.*;
 

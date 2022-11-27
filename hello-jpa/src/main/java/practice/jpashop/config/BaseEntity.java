@@ -1,4 +1,4 @@
-package section7.Config;
+package practice.jpashop.config;
 
 import javax.persistence.MappedSuperclass;
 

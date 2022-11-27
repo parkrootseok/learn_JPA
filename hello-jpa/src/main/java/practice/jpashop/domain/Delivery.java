@@ -1,6 +1,6 @@
-package section9.domain;
+package practice.jpashop.domain;
 
-import section7.Config.BaseEntity;
+import practice.jpashop.config.BaseEntity;
 
 import javax.persistence.*;
 

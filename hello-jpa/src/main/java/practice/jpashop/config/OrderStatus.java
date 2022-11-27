@@ -1,4 +1,4 @@
-package practice1.jpashop.domain;
+package practice.jpashop.config;
 
 public enum OrderStatus {
     Order, CANCEL

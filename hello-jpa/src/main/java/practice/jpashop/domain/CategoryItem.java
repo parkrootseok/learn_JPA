@@ -1,4 +1,4 @@
-package section9.domain;
+package practice.jpashop.domain;
 
 import section6.practice3.domain.Item;
 
