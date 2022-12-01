@@ -21,19 +21,13 @@ public class JpaMain {
             member.setAge(10);
             em.persist(member);
 
-            /* 1. Query 타입 조회 */
-            List results1 = em.createQuery("select m.userName, m.age from Member m").getResultList();
+            em.flush();
+            em.clear();
 
-            Object o = results1.get(0);
-            Object[] result = (Object[]) o;
-
-            /* 2. Object[] 타입 조회 */
-            List<Object[]> results2 = em.createQuery("select m.userName, m.age from Member m").getResultList();
-            result = results2.get(0);
-
-            /* 3. new 명령어 조회*/
-            List<MemberDTO> result3 = em.createQuery("select new section10.MemberDTO(m.userName, m.age) from Member m", MemberDTO.class).getResultList();
-            MemberDTO memberDTO = result3.get(0);
+            List<Member> result = em.createQuery("select m from Member m order by m.age desc", Member.class)
+                            .setFirstResult(0)  // 시작 위치
+                            .setMaxResults(10)  // 페이지 당 담을 갯수
+                            .getResultList();
 
             tx.commit();
         } catch (Exception e) {
