@@ -2,6 +2,7 @@ package jpabook.jpashop.domain.category;
 
 
 import jakarta.persistence.*;
+import jpabook.jpashop.domain.CategoryItem;
 import jpabook.jpashop.domain.item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,8 @@ public class Category {
     @Id @GeneratedValue
     private Long id;
 
-    private List<Item> items = new ArrayList<>();
+    @OneToMany(mappedBy = "category")
+    private List<CategoryItem> categoryItems = new ArrayList<>();
 
     @ManyToOne @JoinColumn(name = "parent_id")
     private Category parent;
