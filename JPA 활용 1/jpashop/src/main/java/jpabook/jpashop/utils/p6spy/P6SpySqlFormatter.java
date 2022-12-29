@@ -1,4 +1,4 @@
-package jpabook.jpashop.config.p6spy;
+package jpabook.jpashop.utils.p6spy;
 
 import com.p6spy.engine.logging.Category;
 import com.p6spy.engine.spy.P6SpyOptions;

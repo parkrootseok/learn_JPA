@@ -1,9 +1,8 @@
 package jpabook.jpashop.repository;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jpabook.jpashop.dto.Member;
+import jpabook.jpashop.domain.member.Member;
 import org.springframework.stereotype.Repository;
 
 @Repository

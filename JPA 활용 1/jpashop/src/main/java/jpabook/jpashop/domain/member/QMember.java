@@ -1,4 +1,4 @@
-package jpabook.jpashop.dto;
+package jpabook.jpashop.domain.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
