@@ -35,6 +35,7 @@ public class Order {
     @OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
 
     @Enumerated(EnumType.STRING)
