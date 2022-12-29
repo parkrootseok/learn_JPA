@@ -19,8 +19,12 @@ public class OrderItem {
     @Id @GeneratedValue
     private Long id;
 
+
     private Item item;
+
+    @ManyToOne @JoinColumn(name = "order_id")
     private Order order;
+
     private int orderPrice;
     private int count;
 

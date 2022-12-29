@@ -1,10 +1,7 @@
 package jpabook.jpashop.domain.category;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jpabook.jpashop.domain.item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,8 +21,13 @@ public class Category {
 
     @Id @GeneratedValue
     private Long id;
+
     private List<Item> items = new ArrayList<>();
+
+    @ManyToOne @JoinColumn(name = "parent_id")
     private Category parent;
+
+    @OneToMany(mappedBy = "parent")
     private List<Category> child = new ArrayList<>();
 
 

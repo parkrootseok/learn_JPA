@@ -1,9 +1,6 @@
 package jpabook.jpashop.domain.order;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jpabook.jpashop.config.status.OrderStatus;
 import jpabook.jpashop.domain.delivery.Delivery;
 import jpabook.jpashop.domain.member.Member;
@@ -26,9 +23,16 @@ public class Order {
 
     @Id @GeneratedValue
     private Long id;
+
+    @ManyToOne @JoinColumn(name = "member_id")
     private Member member;
+
+    @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
+
+    @OneToOne @JoinColumn(name = "delivery_id")
     private Delivery delivery;
+
     private Date orderDate;
     private OrderStatus status;
 }
