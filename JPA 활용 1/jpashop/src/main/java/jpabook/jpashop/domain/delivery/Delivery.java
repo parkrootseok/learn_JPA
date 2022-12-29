@@ -22,7 +22,10 @@ public class Delivery {
 
 
     private Order order;
+
+    @Embedded
     private Address address;
+
     private DeliveryStatus status;
 
 }
