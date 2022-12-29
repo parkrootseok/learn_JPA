@@ -1,4 +1,4 @@
-package jpabook.jpashop.dto;
+package jpabook.jpashop.domain.member;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -7,7 +7,6 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
-import jpabook.jpashop.domain.member.Member;
 
 
 /**
