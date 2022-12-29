@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,7 +20,7 @@ import java.util.List;
 @DiscriminatorColumn(name = "type")
 public class Item {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Long id;
 
@@ -30,7 +31,7 @@ public class Item {
     private int stockQuantity;
 
     @OneToMany(mappedBy = "item")
-    private List<CategoryItem> categoryItems;
+    private List<CategoryItem> categoryItems = new ArrayList<>();
 
 
 }
