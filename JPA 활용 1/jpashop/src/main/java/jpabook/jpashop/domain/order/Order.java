@@ -34,5 +34,7 @@ public class Order {
     private Delivery delivery;
 
     private Date orderDate;
+
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 }
