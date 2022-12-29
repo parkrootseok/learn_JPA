@@ -21,6 +21,7 @@ import java.util.List;
 public class Category {
 
     @Id @GeneratedValue
+    @Column(name = "category_id")
     private Long id;
 
     @OneToMany(mappedBy = "category")

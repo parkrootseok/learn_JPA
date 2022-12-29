@@ -17,6 +17,7 @@ import lombok.NoArgsConstructor;
 public class OrderItem {
 
     @Id @GeneratedValue
+    @Column(name = "orderitem_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "item_id")
