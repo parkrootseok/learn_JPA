@@ -24,13 +24,13 @@ public class Order {
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToOne @JoinColumn(name = "member_id")
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "member_id")
     private Member member;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 
-    @OneToOne @JoinColumn(name = "delivery_id")
+    @OneToOne(fetch = FetchType.LAZY) @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
     private Date orderDate;

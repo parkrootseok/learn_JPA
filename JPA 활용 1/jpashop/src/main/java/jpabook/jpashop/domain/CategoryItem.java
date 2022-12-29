@@ -10,10 +10,10 @@ public class CategoryItem { // 카테고리와 아이템의 다대다 매핑을 
     @Id @GeneratedValue
     private Long id;
 
-    @ManyToOne @JoinColumn(name = "category_id")
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne @JoinColumn(name = "item_id")
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "item_id")
     private Item item;
 
 }
