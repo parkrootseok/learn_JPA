@@ -5,11 +5,13 @@ import jakarta.persistence.PersistenceContext;
 import jpabook.jpashop.domain.member.Member;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class MemberRepository {
 
-    @PersistenceContext
-    EntityManager em;
+    @PersistenceContext // 엔티티 매니저 자동 주입 (EntityManagerFactory 필요 없음)
+    private EntityManager em;
 
     public Long save(Member member) {
         em.persist(member);
@@ -18,6 +20,17 @@ public class MemberRepository {
 
     public Member find(Long id) {
         return em.find(Member.class, id);
+    }
+
+    public List<Member> findAll() {
+        // 테이블이 아닌 엔티티 객체를 상대로 조회
+        return em.createQuery("select m from Member m", Member.class).getResultList();
+    }
+
+    public List<Member> findByName(String name) {
+        return em.createQuery("select m from Member m where m.name = :name", Member.class)
+                .setParameter("name", name)
+                .getResultList();
     }
 
 }
