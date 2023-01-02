@@ -34,6 +34,7 @@ public class Item {
     @OneToMany(mappedBy = "item")
     private List<CategoryItem> categoryItems = new ArrayList<>();
 
+    // ==비즈니스 로직== //
     /**
      * Stock 증가
      */
