@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true) // 읽기 전용으로 설정 시 조회만 하는 쿼리 성능 향상
 public class MemberService {
 
     @Autowired
@@ -17,6 +18,7 @@ public class MemberService {
     /**
      * 회원 가입
      */
+    @Transactional // 조회 기능만 하지 않는 API는 트랜잭션을 따로 선언
     public Long join(Member member) {
 
         // 중복 회원 검증
