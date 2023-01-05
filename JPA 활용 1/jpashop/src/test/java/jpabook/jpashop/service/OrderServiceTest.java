@@ -9,10 +9,8 @@ import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.member.Member;
 import jpabook.jpashop.domain.order.Order;
 import jpabook.jpashop.exception.NotEnoughStockException;
-import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
 import org.junit.Test;
-import org.junit.jupiter.engine.discovery.predicates.IsTestMethod;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,7 +41,7 @@ public class OrderServiceTest {
         Long orderId = orderService.order(member.getId(), item.getId(), 2);
 
         //when
-        Order getOrder = orderRepository.findOrder(orderId);
+        Order getOrder = orderRepository.find(orderId);
 
         //then
         assertEquals(OrderStatus.ORDER, getOrder.getStatus());
@@ -76,7 +74,7 @@ public class OrderServiceTest {
         Long orderId = orderService.order(member.getId(), item.getId(), 2);
 
         //when
-        Order getOrder = orderRepository.findOrder(orderId);
+        Order getOrder = orderRepository.find(orderId);
         getOrder.cancel();
 
         //then
