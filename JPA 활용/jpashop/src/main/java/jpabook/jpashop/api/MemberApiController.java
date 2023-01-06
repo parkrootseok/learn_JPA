@@ -2,6 +2,7 @@ package jpabook.jpashop.api;
 
 import jakarta.validation.Valid;
 import jpabook.jpashop.domain.member.Member;
+import jpabook.jpashop.dto.member.PostMemberReq;
 import jpabook.jpashop.dto.member.PostMemberRes;
 import jpabook.jpashop.service.MemberService;
 import lombok.AllArgsConstructor;
@@ -35,5 +36,21 @@ public class MemberApiController {
     }
     // @RequestBody : JSON 타입으로 온 데이터를 매핑하기 위한 어노테이션
     // Member 객체를 이용하면 유연성이 떨어지기 때문에 DTO 객체를 추가 생성하여 해결하자
-    
+
+    /**
+     * 등록 V2: 요청 값으로 Member 엔티티 대신에 별도의 DTO를 받는다.
+     */
+    @PostMapping("/api/v2/members")
+    public PostMemberRes joinMemberV2(@RequestBody @Valid PostMemberReq postMemberReq) {
+
+        Member member = new Member();
+        member.setName(postMemberReq.getName());
+
+        Long id = memberService.join(member);
+        return new PostMemberRes(id);
+
+    }
+    // 엔티티의 스펙은 노출하면 안됨!!
+    // 엔티티와 API 스펙을 분리 가능
+
 }
