@@ -18,7 +18,7 @@ public class ItemRepository {
 
         if (item.getId() == null) {     // 새로운 아이템 생성
             em.persist(item);
-        } else {                        // 기존에 존재하는 아이템을 수정
+        } else {                        // 병합을 이용하여 기존에 존재하는 아이템을 수정 (단, 병합을 사용할 땐 null 주의)
             em.merge(item);
         }
     }
