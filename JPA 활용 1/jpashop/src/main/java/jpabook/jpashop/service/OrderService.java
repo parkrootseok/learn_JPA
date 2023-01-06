@@ -1,6 +1,7 @@
 package jpabook.jpashop.service;
 
 import jpabook.jpashop.config.status.DeliveryStatus;
+import jpabook.jpashop.config.status.OrderStatus;
 import jpabook.jpashop.domain.delivery.Delivery;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.domain.member.Member;
@@ -9,9 +10,12 @@ import jpabook.jpashop.domain.orderitem.OrderItem;
 import jpabook.jpashop.repository.ItemRepository;
 import jpabook.jpashop.repository.MemberRepository;
 import jpabook.jpashop.repository.OrderRepository;
+import jpabook.jpashop.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -57,6 +61,12 @@ public class OrderService {
         order.cancel();
     }
 
+    /**
+     * 주문 목록 조회
+     */
+    public List<Order> findOrders(OrderSearch orderSearch) {
+        return orderRepository.findAllByCriteria(orderSearch);
+    }
 
 
 }
