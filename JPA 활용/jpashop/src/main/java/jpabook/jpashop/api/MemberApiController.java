@@ -4,13 +4,13 @@ import jakarta.validation.Valid;
 import jpabook.jpashop.domain.member.Member;
 import jpabook.jpashop.dto.member.PostMemberReq;
 import jpabook.jpashop.dto.member.PostMemberRes;
+import jpabook.jpashop.dto.member.PutMemberReq;
+import jpabook.jpashop.dto.member.PutMemberRes;
 import jpabook.jpashop.service.MemberService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController // @Controller + @ResponseBody 를 합친 어노테이션
 @RequiredArgsConstructor
@@ -41,10 +41,10 @@ public class MemberApiController {
      * 등록 V2: 요청 값으로 Member 엔티티 대신에 별도의 DTO를 받는다.
      */
     @PostMapping("/api/v2/members")
-    public PostMemberRes joinMemberV2(@RequestBody @Valid PostMemberReq postMemberReq) {
+    public PostMemberRes joinMemberV2(@RequestBody @Valid PostMemberReq request) {
 
         Member member = new Member();
-        member.setName(postMemberReq.getName());
+        member.setName(request.getName());
 
         Long id = memberService.join(member);
         return new PostMemberRes(id);
@@ -52,5 +52,19 @@ public class MemberApiController {
     }
     // 엔티티의 스펙은 노출하면 안됨!!
     // 엔티티와 API 스펙을 분리 가능
+
+    /**
+     * 수정 V2
+     */
+    @PutMapping("/api/v2/members/{id}")
+    public PutMemberRes updateMemberV2(
+            @PathVariable("id") Long memberId,
+            @RequestBody @Valid PutMemberReq request) {
+
+        memberService.update(memberId, request.getName());
+        Member findMember =  memberService.findMember(memberId);
+
+        return new PutMemberRes(findMember.getId(), findMember.getName());
+    }
 
 }
