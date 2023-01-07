@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0c83017a-2096-4e9d-b453-34a25ce08c30" name="변경" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="myId2FirstActivated">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="true" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="true" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="true" />
+      </map>
+    </option>
+    <option name="myId2Visible">
+      <map>
+        <entry key="com.haulmont.jpb.jpaInspector" value="false" />
+        <entry key="com.haulmont.jpb.jpaPalette" value="false" />
+        <entry key="com.haulmont.jpb.jpaStructure" value="false" />
+      </map>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2Gt9ywEEkoUeH1YiD5fhxwTfALm" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="false" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/g_e_u/git/learn_JPA/hello-jpa/src/main/java/section9&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;모듈&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\g_e_u\git\learn_JPA\hello-jpa\src\main\java\section9" />
+      <recent name="C:\Users\g_e_u\git\learn_JPA\hello-jpa\src\main\java\section8\domain" />
+      <recent name="C:\Users\g_e_u\git\learn_JPA\hello-jpa\src\main\java\section8" />
+      <recent name="C:\Users\g_e_u\git\learn_JPA\hello-jpa\src\main\java\section7\domain" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="section10" />
+      <recent name="section9" />
+      <recent name="section8.domain" />
+      <recent name="section6.practice3.domain" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="0c83017a-2096-4e9d-b453-34a25ce08c30" name="변경" comment="" />
+      <created>1667197276855</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667197276855</updated>
+      <workItem from="1667197282361" duration="10000" />
+      <workItem from="1667222012890" duration="19000" />
+      <workItem from="1667535820332" duration="3066000" />
+      <workItem from="1667726318221" duration="22000" />
+      <workItem from="1667821257480" duration="2075000" />
+      <workItem from="1667828005496" duration="51000" />
+      <workItem from="1668148812752" duration="1260000" />
+      <workItem from="1668424768876" duration="1263000" />
+      <workItem from="1668608760548" duration="797000" />
+      <workItem from="1668694170767" duration="26000" />
+      <workItem from="1668847462013" duration="1384000" />
+      <workItem from="1669038153099" duration="1820000" />
+      <workItem from="1669213908880" duration="957000" />
+      <workItem from="1669289111173" duration="1427000" />
+      <workItem from="1669455093920" duration="1722000" />
+      <workItem from="1669817948926" duration="2042000" />
+      <workItem from="1669906635424" duration="878000" />
+      <workItem from="1669975995869" duration="597000" />
+      <workItem from="1671007697704" duration="5000" />
+      <workItem from="1671044757166" duration="5000" />
+      <workItem from="1671265545054" duration="598000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
