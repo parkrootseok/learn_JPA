@@ -2,6 +2,7 @@ package jpabook.jpashop.api;
 
 import jpabook.jpashop.domain.order.Order;
 import jpabook.jpashop.dto.order.GetOrderDto;
+import jpabook.jpashop.repository.OrderQueryRepository;
 import jpabook.jpashop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 public class OrderApiController {
 
     private final OrderRepository orderRepository;
+    private final OrderQueryRepository orderQueryRepository;
 
     /**
      * V1. 엔티티 직접 노출
@@ -52,6 +54,29 @@ public class OrderApiController {
         return getOrderDtos;
     }
 
+    /**
+     * V3. 엔티티를 조회해서 DTO로 변환(fetch join 사용O)
+     * - fetch join으로 쿼리 1번 호출
+     * 참고: fetch join에 대한 자세한 내용은 JPA 기본편 참고(정말 중요함)
+     */
+    @GetMapping("/api/v3/order")
+    public List<GetOrderDto> ordersV3() {
+        List<Order> orders = orderRepository.findAllWithMemberDelivery();
+        List<GetOrderDto> getOrderDtos = orders.stream()
+                .map(o -> new GetOrderDto(o))
+                .collect(Collectors.toList());
 
+        return getOrderDtos;
+    }
+
+    /**
+     * V4. JPA에서 DTO로 바로 조회
+     * - 쿼리 1번 호출
+     * - select 절에서 원하는 데이터만 선택해서 조회
+     */
+    @GetMapping("/api/v4/order")
+    public List<GetOrderDto> ordersV4() {
+        return orderQueryRepository.findOrderDtos();
+    }
 
 }

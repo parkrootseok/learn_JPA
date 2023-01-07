@@ -9,7 +9,6 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@AllArgsConstructor
 public class GetOrderDto {
 
     private Long orderId;
@@ -24,6 +23,15 @@ public class GetOrderDto {
         this.orderDate = order.getOrderDate();
         this.orderStatus = order.getStatus();
         this.address = order.getMember().getAddress();
+    }
+
+    public GetOrderDto(Long orderId, String name, LocalDateTime
+            orderDate, OrderStatus orderStatus, Address address) {
+        this.orderId = orderId;
+        this.name = name;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.address = address;
     }
 
 }
