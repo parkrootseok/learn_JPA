@@ -29,6 +29,10 @@ public class OrderRepository {
         return em.find(Order.class, orderId);
     }
 
+    public List<Order> findAll() {
+        return em.createQuery("select o from Order o", Order.class).getResultList();
+    }
+
     /**
      * JPA Criteria (가독성이 좋지 않기에 사용을 권장하지는 않음)
      * Querydsl 사용 권장

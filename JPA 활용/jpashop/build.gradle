@@ -54,6 +54,9 @@ dependencies {
 	// devtools
 	compileOnly("org.springframework.boot:spring-boot-devtools")
 
+	// Hibernate5JakartaModule
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5-jakarta'
+
 	// JUnit4
 	testImplementation("org.junit.vintage:junit-vintage-engine") {
 		exclude group: "org.hamcrest", module: "hamcrest-core"
