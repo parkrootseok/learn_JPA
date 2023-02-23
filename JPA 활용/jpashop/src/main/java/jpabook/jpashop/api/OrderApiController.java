@@ -1,82 +1,87 @@
 package jpabook.jpashop.api;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import jpabook.jpashop.domain.order.Order;
+import jpabook.jpashop.domain.orderitem.OrderItem;
 import jpabook.jpashop.dto.order.GetOrderDto;
-import jpabook.jpashop.repository.OrderQueryRepository;
 import jpabook.jpashop.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
 public class OrderApiController {
 
     private final OrderRepository orderRepository;
-    private final OrderQueryRepository orderQueryRepository;
 
-    /**
-     * V1. 엔티티 직접 노출
-     * - Hibernate5Module 모듈 등록, LAZY=null 처리
-     * - 양방향 관계 문제 발생 -> @JsonIgnore
-     */
-    @GetMapping("/api/v1/order")
+     /**
+      * V1. 엔티티 직접 노출
+      * - Hibernate5Module 모듈 등록, LAZY=null 처리
+      * - 양방향 관계 문제 발생 -> @JsonIgnore
+      */
+    @GetMapping("/api/v1/orders")
     public List<Order> ordersV1() {
-        List<Order> orders = orderRepository.findAll();
 
-        // member와 adrress는 지연 로딩 사용
-        // 즉, 실제 엔티티가 아닌 프록시가 존재
-        // jackson 라이브러리는 프록시 객체를 json으로 생성 불가
-        // 위 코드는 Hibernate5Module을 스프링 빈으로 등록하여 해결 가능(단, 이는 추천하지 않는 방법)
-        // 아래와 같이 강제 초기화를 통해 해결 가능
-        for (Order o : orders) {
-            // Lazy 강제 초기화
-            o.getMember().getName();
-            o.getDelivery().getAddress();
+        List<Order> all = orderRepository.findAll();
+
+        for (Order order : all) {
+            order.getMember().getName();
+            order.getDelivery().getAddress();
+
+            List<OrderItem> orderItems = order.getOrderItems();
+            orderItems.stream().forEach(o -> o.getItem().getName());
         }
-        return orders;
+
+        return all;
     }
 
     /**
      * V2. 엔티티를 조회해서 DTO로 변환(fetch join 사용X)
-     * - 단점: 지연로딩으로 쿼리 N번 호출
+     * - 트랜잭션 안에서 지연 로딩 필요
      */
-    @GetMapping("/api/v2/order")
+    @GetMapping("/api/v2/orders")
     public List<GetOrderDto> ordersV2() {
         List<Order> orders = orderRepository.findAll();
-        List<GetOrderDto> getOrderDtos = orders.stream()
+        List<GetOrderDto> result = orders.stream()
                 .map(o -> new GetOrderDto(o))
                 .collect(Collectors.toList());
 
-        return getOrderDtos;
+        return result;
     }
 
     /**
      * V3. 엔티티를 조회해서 DTO로 변환(fetch join 사용O)
-     * - fetch join으로 쿼리 1번 호출
-     * 참고: fetch join에 대한 자세한 내용은 JPA 기본편 참고(정말 중요함)
+     * - 페이징 시에는 N 부분을 포기해야함(대신에 batch fetch size? 옵션 주면 N -> 1 쿼리로 변경 가능)
      */
-    @GetMapping("/api/v3/order")
+    @GetMapping("/api/v3/orders")
     public List<GetOrderDto> ordersV3() {
-        List<Order> orders = orderRepository.findAllWithMemberDelivery();
-        List<GetOrderDto> getOrderDtos = orders.stream()
+        List<Order> oredrs = orderRepository.findAllWithItem();
+        List<GetOrderDto> result = oredrs.stream()
                 .map(o -> new GetOrderDto(o))
                 .collect(Collectors.toList());
 
-        return getOrderDtos;
+        return result;
     }
 
     /**
-     * V4. JPA에서 DTO로 바로 조회
-     * - 쿼리 1번 호출
-     * - select 절에서 원하는 데이터만 선택해서 조회
+     * V3.1 엔티티를 조회해서 DTO로 변환 페이징 고려
+     * - ToOne 관계만 우선 모두 페치 조인으로 최적화
+     * - 컬렉션 관계는 hibernate.default_batch_fetch_size, @BatchSize로 최적화
      */
-    @GetMapping("/api/v4/order")
-    public List<GetOrderDto> ordersV4() {
-        return orderQueryRepository.findOrderDtos();
+    @GetMapping("/api/v3.1/orders")
+    public List<GetOrderDto> ordersV3_page(
+            @RequestParam(value = "offset", defaultValue = "0") int offset,
+            @RequestParam(value = "limit", defaultValue = "100") int limit
+    ) {
+        List<Order> oredrs = orderRepository.findAllWithMemberDelivery(offset, limit);
+        List<GetOrderDto> result = oredrs.stream()
+                .map(o -> new GetOrderDto(o))
+                .collect(Collectors.toList());
+
+        return result;
     }
 
 }
