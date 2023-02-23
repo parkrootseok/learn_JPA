@@ -4,11 +4,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.*;
-import jpabook.jpashop.config.status.OrderStatus;
 import jpabook.jpashop.domain.member.Member;
-import jpabook.jpashop.domain.member.QMember;
 import jpabook.jpashop.domain.order.Order;
-import jpabook.jpashop.domain.order.QOrder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -71,5 +68,30 @@ public class OrderRepository {
                                         "join fetch o.member m " +
                                         "join fetch o.delivery d", Order.class)
                 .getResultList();
+    }
+
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+
+        return em.createQuery(
+                        "select o from Order o "
+                                + "join fetch o.member m "
+                                + "join fetch o.delivery d ", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
+
+    }
+
+    //  1:N 조회일 경우 중복 조회를 막기 위해 distinct 키워드를 사용한다.
+    public List<Order> findAllWithItem() {
+
+        return em.createQuery(
+                        "select distinct o from Order o "
+                                + "join fetch o.member m "
+                                + "join fetch o.delivery d "
+                                + "join fetch o.orderItems oi "
+                                + "join fetch oi.item i", Order.class)
+                .getResultList();
+
     }
 }
